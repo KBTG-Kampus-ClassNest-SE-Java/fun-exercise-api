@@ -1,0 +1,18 @@
+spring:
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none
+springdoc:
+  swagger-ui:
+    url: /DONOTTRACKPRIVATE-fintech-bank-1.0.0-swagger.yaml
