@@ -15,4 +15,4 @@ spring:
       ddl-auto: none
 springdoc:
   swagger-ui:
-    url: /DONOTTRACKPRIVATE-fintech-bank-1.0.0-swagger.yaml
+#    url: /DONOTTRACKPRIVATE-fintech-bank-1.0.0-swagger.yaml

@@ -1,5 +1,11 @@
 package com.javabootcamp.fintechbank.accounts;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,12 +25,28 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @RequestMapping(value = "" ,method = RequestMethod.GET)
+    @Operation(summary = "list all accounts")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "list all accounts",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = AccountResponse.class)))
+                    })
+    })
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<AccountResponse> getAccounts() {
         return accountService.getAccounts();
     }
 
-    @RequestMapping(value = "/{accountNo}/deposit" ,method = RequestMethod.POST)
+    @Operation(summary = "withdraw from an account")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "withdraw money from specific account",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = AccountResponse.class))
+                    })
+    })
+    @RequestMapping(value = "/{accountNo}/deposit", method = RequestMethod.POST)
     public AccountResponse depositAccount(
             @PathVariable(name = "accountNo") Integer accountNo,
             @RequestBody @Valid DepositRequest depositRequest
