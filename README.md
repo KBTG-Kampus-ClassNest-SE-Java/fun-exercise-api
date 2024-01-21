@@ -34,5 +34,160 @@ Before starting, ensure you have the following tools and resources
       - **Rerun the application**, and then we'll see result of that change. ![](swagger-6.2.png)
     - 🎨 Try to make any change and learn what happens.
 
-## Instructions
+# Instructions
 Your task is to develop a financial technology application in line with the provided [API specification,](https://app.swaggerhub.com/apis/DONOTTRACKPRIVATE/fintech-bank/1.0.0)
+which includes the following endpoints:
+- `GET /accounts`: Retrieves an accounts. (We have already implemented this endpoint ✅)
+- `POST /accounts/{accountNo}/deposit`: Deposits an amount to the account. (We have already implemented this endpoint ✅)
+- `POST /accounts`: Creates an account.
+- `POST /accounts/{accountNo}/withdraw`: Withdraws an amount from the account.
+- `POST /accounts/{accountNo}/transfer/{targetAccountNo}`: Transfers an amount from one account to another.
+- `GET /accounts/{accountNo}`: Retrieves an account.
+
+## Challenge 1: Create `POST: /accounts` endpoint according to the [API specification](https://app.swaggerhub.com/apis/DONOTTRACKPRIVATE/fintech-bank/1.0.0#/account-controller/create)
+> Suggestion: Open API specification and try to understand the request and response body. Then, implement the endpoint.
+
+<details>
+<summary>Hint: <b>Challenge 1</b></summary>
+
+```
+HTTP Method: POST
+Request Mapping: /accounts
+
+Request Body: 
+{
+  "type": "SAVING",
+  "name": "string",
+  "balance": 0 <- Double
+}
+
+
+Response:
+{
+  "no": 0, <- Integer
+  "type": "SAVING",
+  "name": "string",
+  "balance": 0 <- Double
+}
+```
+Using `@Operation` annotation to add description to the endpoint.
+```
+@Operation(summary = "จนมาเห็นกับตา จนพาใจมาเจ็บ")
+```
+Using `@ApiResponses` annotation to add response code and description to the endpoint.
+```
+@ApiResponses({
+   @ApiResponse(responseCode = "200", description = "ฉีกบ่มีหม่องเย็บ หัวใจที่ให้เจ้า", { ... })
+})
+```
+</details>
+
+## Challenge 2: Create `POST /accounts/{accountNo}/withdraw` endpoint according to the [API specification](https://app.swaggerhub.com/apis/DONOTTRACKPRIVATE/fintech-bank/1.0.0#/account-controller/withdraw)
+
+> Suggestion: Open API specification and try to understand the request and response body. Then, implement the endpoint.
+
+<details>
+<summary>Hint: <b>Challenge 2</b></summary>
+
+```
+HTTP Method: POST
+Request Mapping: /accounts/{accountNo}/withdraw
+Path Variable: accountNo (Integer)
+Request Body: 
+{
+  "amount": 0 <- Double
+}
+
+Response
+{
+  "no": 0, <- Integer
+  "type": "SAVING",
+  "name": "string",
+  "balance": 0 <- Double
+}
+```
+
+Using `@Operation` annotation to add description to the endpoint.
+```
+@Operation(summary = "จนมาเห็นกับตา จนพาใจมาเจ็บ")
+```
+Using `@ApiResponses` annotation to add response code and description to the endpoint.
+```
+@ApiResponses({
+   @ApiResponse(responseCode = "200", description = "ฉีกบ่มีหม่องเย็บ หัวใจที่ให้เจ้า", { ... })
+})
+```
+</details>
+
+## Challenge 3: Create `POST /accounts/{accountNo}/transfer/{targetAccountNo}` endpoint according to the [API specification](https://app.swaggerhub.com/apis/DONOTTRACKPRIVATE/fintech-bank/1.0.0#/account-controller/transfer)
+
+> Suggestion: Open API specification and try to understand the request and response body. Then, implement the endpoint.
+
+<details>
+<summary>Hint: <b>Challenge 3</b></summary>
+
+```
+HTTP Method: POST
+Request Mapping: /accounts/{accountNo}/transfer/{targetAccountNo}
+Path Variable: accountNo (Integer), targetAccountNo (Integer)
+Request Body: 
+{
+  "amount": 0, <- Double
+  "remark": "string"
+}
+
+Response (My account)
+{
+  "no": 0,
+  "type": "SAVING",
+  "name": "string",
+  "balance": 0 <- Double
+}
+```
+
+Using `@Operation` annotation to add description to the endpoint.
+```
+@Operation(summary = "จนมาเห็นกับตา จนพาใจมาเจ็บ")
+```
+Using `@ApiResponses` annotation to add response code and description to the endpoint.
+```
+@ApiResponses({
+   @ApiResponse(responseCode = "200", description = "ฉีกบ่มีหม่องเย็บ หัวใจที่ให้เจ้า", { ... })
+})
+```
+
+</details>
+
+## Challenge 4: Create `GET /accounts/{accountNo}` endpoint according to the [API specification](https://app.swaggerhub.com/apis/DONOTTRACKPRIVATE/fintech-bank/1.0.0#/account-controller/get)
+
+> Suggestion: Open API specification and try to understand the request and response body. Then, implement the endpoint.
+
+<details>
+<summary>Hint: <b>Challenge 4</b></summary>
+
+```
+HTTP Method: GET
+Request Mapping: /accounts/{accountNo}
+Path Variable: accountNo (Integer)
+
+Response
+{
+  "no": 0, <- Integer
+  "type": "SAVING",
+  "name": "string",
+  "balance": 0 <- Double
+}
+```
+
+Using `@Operation` annotation to add description to the endpoint.
+```
+@Operation(summary = "จนมาเห็นกับตา จนพาใจมาเจ็บ")
+```
+Using `@ApiResponses` annotation to add response code and description to the endpoint.
+```
+@ApiResponses({
+   @ApiResponse(responseCode = "200", description = "ฉีกบ่มีหม่องเย็บ หัวใจที่ให้เจ้า", { ... })
+})
+```
+
+</details>
