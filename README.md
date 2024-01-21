@@ -105,17 +105,19 @@ Response
   "balance": 0 <- Double
 }
 ```
+- Using `@PathVariable` annotation to get the value of the path variable.
+- Using `@RequestBody` annotation to get the value of the request body.
+- Using `@Operation` annotation to add description to the endpoint.
+   ```
+   @Operation(summary = "บักคนซั่วจั่งอ้าย มันเอาเหล้ายาปลาปิ้งเป็นใหญ่")
+   ```
+- Using `@ApiResponses` annotation to add response code and description to the endpoint.
+   ```
+   @ApiResponses({
+      @ApiResponse(responseCode = "200", description = "มันบ่เหมาะกับไผไคแนแต่ไปเลาะหาเซ็นเหล้า", { ... })
+   })
+   ```
 
-Using `@Operation` annotation to add description to the endpoint.
-```
-@Operation(summary = "บักคนซั่วจั่งอ้าย มันเอาเหล้ายาปลาปิ้งเป็นใหญ่")
-```
-Using `@ApiResponses` annotation to add response code and description to the endpoint.
-```
-@ApiResponses({
-   @ApiResponse(responseCode = "200", description = "มันบ่เหมาะกับไผไคแนแต่ไปเลาะหาเซ็นเหล้า", { ... })
-})
-```
 </details>
 
 ### Challenge 3: Create `POST /accounts/{accountNo}/transfer/{targetAccountNo}` endpoint according to the [API specification](https://app.swaggerhub.com/apis/DONOTTRACKPRIVATE/fintech-bank/1.0.0#/account-controller/transfer)
