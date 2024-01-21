@@ -38,6 +38,11 @@ which includes the following endpoints:
 - `POST /accounts/{accountNo}/transfer/{targetAccountNo}`: Transfers an amount from one account to another. [Challenge 3](#challenge-3-create-post-accountsaccountnotransfertargetaccountno-endpoint-according-to-the-api-specification)
 - `GET /accounts/{accountNo}`: Retrieves an account. [Challenge 4](#challenge-4-create-get-accountsaccountno-endpoint-according-to-the-api-specification)
 
+> In the case of various errors, the system should respond with appropriate status codes, such as:
+> - 400 Bad Request for client-side errors.
+> - 500 Internal Server Error for server-side errors.
+
+
 ### Challenge 1: Create `POST: /accounts` endpoint according to the [API specification](https://app.swaggerhub.com/apis/DONOTTRACKPRIVATE/fintech-bank/1.0.0#/account-controller/create)
 > Suggestion: Open API specification and try to understand the request and response body. Then, implement the endpoint.
 
