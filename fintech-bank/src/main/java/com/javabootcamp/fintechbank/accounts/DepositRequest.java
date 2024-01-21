@@ -7,4 +7,5 @@ public record DepositRequest(
         @NotNull
         @Positive
         Double amount
-) { }
+) {
+}

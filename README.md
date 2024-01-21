@@ -10,7 +10,7 @@ Before starting, ensure you have the following tools and resources
 1. **Clone the Repository:** Use Git to clone the project repository to your local machine.
 2. **Import the Project:** Import the project and make sure all dependencies are correctly resolved.
 3. **Run the Application:** Ensure that all prerequisites are correctly configured. [Click me to verify](http://localhost:8080/accounts) 
-4. **H2 Console:** Connect and verify schema and data are correctly initialized `(resources/data.sql, resources/scheme.sql)` [H2 Console](http://localhost:8080/h2-console).
+4. **Login H2 Console:** Connect and verify schema and data are correctly initialized `(resources/data.sql, resources/scheme.sql)` [H2 Console](http://localhost:8080/h2-console).
    - `Driver Class`: `org.h2.Driver`
    - `JDBC URL`: `jdbc:h2:mem:testdb`
    - `User Name`: `sa`
@@ -23,7 +23,7 @@ Before starting, ensure you have the following tools and resources
 6. **Testing an API with Swagger UI:** You can test the endpoints using the Swagger UI at [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
     - `POST /accounts/{accountNo}/deposit`: deposits an amount to the account.
       - ![](swagger-6.1.png)
-    - **Make a change:** Go to line: 37 `@Operation(summary = "withdraw from an account")`
+    - **Make a change:** Go to **line: 37** `@Operation(summary = "withdraw from an account")`
       - Change the value of `summary` to `deposits an amount to the account`.
       - **Rerun the application**, and then we'll see result of that change. ![](swagger-6.2.png)
     - 🎨 Try to make any change and learn what happens.
