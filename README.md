@@ -10,7 +10,7 @@ Before starting, ensure you have the following tools and resources
 1. **Clone the Repository:** Use Git to clone the project repository to your local machine.
 2. **Import the Project:** Import the project and make sure all dependencies are correctly resolved.
 3. **Run the Application:** Ensure that all prerequisites are correctly configured. [Click me to verify](http://localhost:8080/accounts) 
-4. **H2 Console:** Verify that the schema and data are correctly initialized [H2 Console](http://localhost:8080/h2-console).
+4. **H2 Console:** Connect and verify schema and data are correctly initialized `(resources/data.sql, resources/scheme.sql)` [H2 Console](http://localhost:8080/h2-console).
    - `Driver Class`: `org.h2.Driver`
    - `JDBC URL`: `jdbc:h2:mem:testdb`
    - `User Name`: `sa`
