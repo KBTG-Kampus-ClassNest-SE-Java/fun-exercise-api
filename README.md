@@ -23,7 +23,7 @@ Before starting, ensure you have the following tools and resources
 6. **Testing an API with Swagger UI:** You can test the endpoints using the Swagger UI at [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
     - `POST /accounts/{accountNo}/deposit`: deposits an amount to the account.
       - ![](swagger-6.1.png)
-    - **Make a change:** Go to **line: 37** `@Operation(summary = "withdraw from an account")`
+    - **Make a change to `AccountController.java`:** Go to **line: 37** `@Operation(summary = "withdraw from an account")`
       - Change the value of `summary` to `deposits an amount to the account`.
       - **Rerun the application**, and then we'll see result of that change. ![](swagger-6.2.png)
     - 🎨 Try to make any change and learn what happens.
