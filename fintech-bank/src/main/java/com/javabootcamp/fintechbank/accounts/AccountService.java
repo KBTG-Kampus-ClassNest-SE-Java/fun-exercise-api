@@ -40,4 +40,8 @@ public class AccountService {
         }
         return new AccountResponse(account.getNo(), account.getType(), account.getName(), account.getBalance());
     }
+
+    public AccountResponse createAccount(CreateAccountRequest createAccountRequest) {
+        return null;
+    }
 }

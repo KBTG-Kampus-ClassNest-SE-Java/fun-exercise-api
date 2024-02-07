@@ -29,12 +29,14 @@ public class AccountController {
                                     array = @ArraySchema(schema = @Schema(implementation = AccountResponse.class)))
                     })
     })
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<AccountResponse> getAccounts() {
         return accountService.getAccounts();
     }
 
-    @Operation(summary = "withdraw from an account")
+
+    @Operation(summary = "deposits an amount to the account")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "withdraw money from specific account",
                     content = {
@@ -48,6 +50,20 @@ public class AccountController {
             @RequestBody @Valid DepositRequest depositRequest
     ) {
         return accountService.depositAccount(accountNo, depositRequest);
+    }
+
+    @Operation(summary = "creates an account")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "create an account",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = AccountResponse.class))
+                    })
+    })
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public AccountResponse createAccount(@RequestBody @Valid CreateAccountRequest createAccountRequest){
+
+        return accountService.createAccount(createAccountRequest);
     }
 }
 
