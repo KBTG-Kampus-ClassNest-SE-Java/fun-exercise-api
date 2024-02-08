@@ -53,4 +53,16 @@ public class ControllerExceptionHandler {
                 request.getDescription(false)
         );
     }
+
+    @ExceptionHandler(value = {BadRequestException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiErrorResponse handleInternalServerException(BadRequestException badRequestException, WebRequest request) {
+        return new ApiErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                badRequestException.getMessage(),
+                request.getDescription(false)
+        );
+    }
 }

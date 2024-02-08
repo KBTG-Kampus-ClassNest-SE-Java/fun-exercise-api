@@ -1,7 +1,9 @@
 package com.javabootcamp.fintechbank.accounts;
 
+import com.javabootcamp.fintechbank.exceptions.BadRequestException;
 import com.javabootcamp.fintechbank.exceptions.InternalServerException;
 import com.javabootcamp.fintechbank.exceptions.NotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +43,33 @@ public class AccountService {
         return new AccountResponse(account.getNo(), account.getType(), account.getName(), account.getBalance());
     }
 
+    @Transactional
     public AccountResponse createAccount(CreateAccountRequest createAccountRequest) {
-        return null;
+
+        String checkType = createAccountRequest.type();
+        if (checkType.equals("SAVING") || checkType.equals("Checking") || checkType.equals("CURRENT")) {
+            System.out.println("Valid account type");
+        }
+        else {
+            throw new BadRequestException("Invalid account type");
+        }
+
+        Optional<Account> optionalAccount = accountRepository.findByName(createAccountRequest.name());
+
+        if (optionalAccount.isPresent()) {
+            throw new BadRequestException("Account name already exists");
+        }
+
+        Account newAccount = new Account();
+        newAccount.setType(createAccountRequest.type());
+        newAccount.setName(createAccountRequest.name());
+        newAccount.setBalance(createAccountRequest.balance());
+
+        try {
+            accountRepository.save(newAccount);
+        } catch (Exception e) {
+            throw new InternalServerException("Failed to create account");
+        }
+        return new AccountResponse(newAccount.getNo(), newAccount.getType(), newAccount.getName(), newAccount.getBalance());
     }
 }
