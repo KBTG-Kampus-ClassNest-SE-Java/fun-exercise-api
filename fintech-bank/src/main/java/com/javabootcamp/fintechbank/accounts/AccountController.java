@@ -65,5 +65,21 @@ public class AccountController {
 
         return accountService.createAccount(createAccountRequest);
     }
+
+    @Operation(summary = "withdraws an amount from the account")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "withdraw money from specific account",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = AccountResponse.class))
+                    })
+    })
+    @RequestMapping(value = "/{accountNo}/withdraw", method = RequestMethod.POST)
+    public AccountResponse withdrawAccount(
+            @PathVariable(name = "accountNo") Integer accountNo,
+            @RequestBody @Valid WithdrawRequest withdrawRequest
+    ){
+        return accountService.withdrawAccount(accountNo, withdrawRequest);
+    }
 }
 

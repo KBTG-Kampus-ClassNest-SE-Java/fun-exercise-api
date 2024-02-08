@@ -72,4 +72,26 @@ public class AccountService {
         }
         return new AccountResponse(newAccount.getNo(), newAccount.getType(), newAccount.getName(), newAccount.getBalance());
     }
+
+    @Transactional
+    public AccountResponse withdrawAccount(Integer accountNo, WithdrawRequest withdrawRequest) {
+        Optional<Account> optionalAccount = accountRepository.findById(accountNo);
+        if (optionalAccount.isEmpty()) {
+            throw new NotFoundException("Account not found");
+        }
+
+        Account account = optionalAccount.get();
+        Double newBalance = account.getBalance() - withdrawRequest.amount();
+        if (newBalance < 0) {
+            throw new BadRequestException("Insufficient balance");
+        }
+        account.setBalance(newBalance);
+
+        try {
+            accountRepository.save(account);
+        } catch (Exception e) {
+            throw new InternalServerException("Failed to withdraw");
+        }
+        return new AccountResponse(account.getNo(), account.getType(), account.getName(), account.getBalance());
+    }
 }
